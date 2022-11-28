@@ -4,6 +4,7 @@ import sys
 from const import *
 from game import Game
 
+
 class Main:
     def __init__(self):
         pygame.init()
@@ -22,8 +23,11 @@ class Main:
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     sys.exit()
+                if event.type == pygame.MOUSEBUTTONUP:
+                    pass
 
             pygame.display.update()
+
 
 main = Main()
 main.mainloop()

@@ -1,14 +1,20 @@
+from square import Square
 from const import *
-
 class Board:
 
     def __init__(self):
-        self.h_rects = []
-        self.v_rects = []
-        pass
+        self.squares = []
 
     def _create(self):
-        pass
+        row = []
+        for i in range(0,ROWS):
+            row.append(0)
+        self.squares = [row for col in range(COLS)]
 
-    def _add_piesces(self, color):
-        pass
+        print(self.squares)
+        for i in range(ROWS):
+            for j in range(COLS):
+                self.squares[i][j] = Square(i,j)
+
+b = Board()
+b._create()
