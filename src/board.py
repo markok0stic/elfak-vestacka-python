@@ -9,12 +9,9 @@ class Board:
         row = []
         for i in range(0, Const.ROWS):
             row.append(0)
-        self.squares = [row for col in range(Const.COLS)]
+        self.squares = [row for col in range(0, Const.COLS)]
 
         print(self.squares)
-        for i in range(Const.ROWS):
-            for j in range(Const.COLS):
+        for i in range(0,Const.ROWS):
+            for j in range(0,Const.COLS):
                 self.squares[i][j] = Square(i,j)
-
-#b = Board()
-#b._create()

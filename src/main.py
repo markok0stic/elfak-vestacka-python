@@ -4,12 +4,13 @@ import sys
 from const import *
 from game import Game
 from form import GameForm
-
+from board import Board
 
 class Main:
     def __init__(self):
         self.screen = None
         self.game = None
+        self.board = None
         GameForm()
 
     def mainloop(self):
@@ -18,6 +19,8 @@ class Main:
         pygame.init()
         pygame.display.set_caption('Domineering')
 
+        self.board = Board()
+        self.board._create()
         game = self.game
         screen = self.screen
         while True:
