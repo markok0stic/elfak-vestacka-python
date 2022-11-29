@@ -1,8 +1,8 @@
 from functools import partial
 from tkinter import *
 from tkinter import ttk
-from tkinter import messagebox
 import tkinter
+from const import *
 
 
 class GameForm:
@@ -15,12 +15,14 @@ class GameForm:
         rows = tkinter.IntVar()
         cols = tkinter.IntVar()
         first = tkinter.StringVar()
-        
+   
         def getRowsANDCols(r:Entry, c:Entry, f:Radiobutton):
-            ROWS= r.get()
-            COLS= c.get()
-            FIRST_PLAYER= f.get()
-            print("s")
+            global ROWS
+            global COLS
+            ROWS = r.get()
+            COLS = c.get()
+            FIRST_PLAYER = f.get()
+            root.destroy()
 
 
         ttk.Label(frm, text="Rows:", width=5).grid(column=0, row=1)
@@ -39,4 +41,4 @@ class GameForm:
 
         root.mainloop()
 
-c = GameForm()
+#c = GameForm()

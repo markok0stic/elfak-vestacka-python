@@ -2,6 +2,7 @@ import pygame
 from const import *
 from board import Board
 from domino import Domino
+
 class Game:
 
     def __init__(self):

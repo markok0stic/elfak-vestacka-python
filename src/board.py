@@ -16,5 +16,5 @@ class Board:
             for j in range(COLS):
                 self.squares[i][j] = Square(i,j)
 
-b = Board()
-b._create()
+#b = Board()
+#b._create()
