@@ -7,13 +7,13 @@ class Board:
 
     def _create(self):
         row = []
-        for i in range(0,ROWS):
+        for i in range(0, Const.ROWS):
             row.append(0)
-        self.squares = [row for col in range(COLS)]
+        self.squares = [row for col in range(Const.COLS)]
 
         print(self.squares)
-        for i in range(ROWS):
-            for j in range(COLS):
+        for i in range(Const.ROWS):
+            for j in range(Const.COLS):
                 self.squares[i][j] = Square(i,j)
 
 #b = Board()

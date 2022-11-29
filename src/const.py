@@ -1,10 +1,13 @@
-WIDTH = 800
-HEIGHT = 800
+class Const:
 
-HDIR = -10
-VDIR = -11
+    WIDTH = 750
+    HEIGHT = 750
 
-ROWS = 6
-COLS = 6
-FIRST_PLAYER = 0
-SQSIZE = WIDTH // COLS
+    HDIR = -10
+    VDIR = -11
+
+    ROWS = 10
+    COLS = 10
+    FIRST_PLAYER = 0
+
+    SQSIZE = WIDTH // COLS
