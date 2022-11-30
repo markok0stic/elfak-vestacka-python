@@ -31,7 +31,14 @@ class Main:
                     pygame.quit()
                     sys.exit()
                 if event.type == pygame.MOUSEBUTTONUP:
-                    pass
+                    move_info = input()
+                    if self.board.has_place(move_info):
+                        # postavi dominu u board
+                        # postavi dominu na interfejs
+                        pass
+
+
+
 
             pygame.display.update()
 

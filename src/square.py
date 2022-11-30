@@ -6,4 +6,4 @@ class Square:
         self.piece = piece
 
     def has_place(self):
-        return self.piece is not None
+        return self.piece is None
