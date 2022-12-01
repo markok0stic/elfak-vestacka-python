@@ -3,6 +3,21 @@ from const import *
 from board import Board
 from domino import Domino
 
+
+def read_inputs():
+    move_info = input()
+    move_info = move_info.replace('[', '')
+    move_info = move_info.replace(']', '')
+    move_info = move_info.replace(',', '')
+    move = list(move_info)
+    move[0] = int(move[0])
+    return move
+
+
+def switch_player():
+    Const.PLACE_VERT = not Const.PLACE_VERT
+
+
 class Game:
 
     def __init__(self):
@@ -29,3 +44,11 @@ class Game:
                 for col in range(Const.COLS):
                     if self.board.squares[row][col].has_place():
                         piece = self.board.squares[row][col].piece
+    def try_place_domino(self):
+        move_info = read_inputs()
+        if self.board.has_place(move_info):
+            self.board.occupy_squares(move_info)
+            #self.show_domino(move_info)
+            #switch_player()
+        else:
+            print('No room for that move!')

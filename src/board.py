@@ -2,10 +2,19 @@ from square import Square
 from const import *
 
 
+def valid_move(move_info):
+    if (move_info[0] + 1) > Const.ROWS and Const.PLACE_VERT:
+        return False
+    elif Const.get_letter_index(move_info[1]) + 1 > Const.COLS and not Const.PLACE_VERT:
+        return False
+    return True
+
+
 class Board:
 
     def __init__(self):
         self.squares = []
+        self._create()
 
     def _create(self):
         print(Const.ROWS)
@@ -22,28 +31,27 @@ class Board:
                 self.squares[i][j] = Square(i, Const.ALFABET[j])
 
     def has_place(self, move):
-        move_info = list(move)
-        move_info[0] = int(move_info[0])
+        res = False
 
         # validate move
-        if not self.valid_move(move_info):
-            return
+        if not valid_move(move):
+            return res
 
         # valid move check is free
-        if self.squares[move_info[0]][Const.get_letter_index(move_info[1])].has_place():
-            if Const.PLACE_VERT and self.squares[move_info[0]][Const.get_letter_index(move_info[1]) + 1].has_place():
-                print('postavi ver')
-                Const.PLACE_VERT = not Const.PLACE_VERT
-            elif not Const.PLACE_VERT and self.squares[move_info[0] + 1][
-                Const.get_letter_index(move_info[1])].has_place():
-                print('postvi hor')
-                Const.PLACE_VERT = not Const.PLACE_VERT
-            else:
-                print('Nema')
-        else:
-            print('Nema')
+        if self.squares[move[0]][Const.get_letter_index(move[1])].has_place():
+            if Const.PLACE_VERT and self.squares[move[0]][Const.get_letter_index(move[1]) + 1].has_place():
+                res = True
+            elif not Const.PLACE_VERT and self.squares[move[0] + 1][Const.get_letter_index(move[1])].has_place():
+                res = True
 
-    def valid_move(self, move_info):
-        if (move_info[0] + 1) > Const.ROWS or Const.get_letter_index(move_info[1]) + 1 > Const.COLS:
-            return False
-        return True
+        return res
+
+    def occupy_squares(self, move):
+        if Const.PLACE_VERT:
+            self.squares[move[0]][int(Const.get_letter_index(move[1]))].piece = 'X'
+            self.squares[move[0]][int(Const.get_letter_index(move[1]) + 1)].piece = 'X'
+            print((f'Postavljena domina na pozicijama: ({0},{1}) | ({0},{2})').format(move[0],move[1], Const.get_next_letter(move[1])))
+        else:
+            self.squares[move[0]][Const.get_letter_index(move[1])].piece = 'O'
+            self.squares[move[0]][Const.get_letter_index(move[1]) + 1].piece = 'O'
+            print((f'Postavljena domina na pozicijama: ({1},{0}) | ({2},{0})').format(move[1], move[0], move[0] + 1))

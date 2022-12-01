@@ -7,3 +7,6 @@ class Square:
 
     def has_place(self):
         return self.piece is None
+
+    def occupy(self, letter):
+        self.piece = [letter]

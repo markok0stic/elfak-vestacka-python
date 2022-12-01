@@ -19,26 +19,21 @@ class Main:
         pygame.init()
         pygame.display.set_caption('Domineering')
 
-        self.board = Board()
-        self.board._create()
         game = self.game
         screen = self.screen
         while True:
             game.show_bg(screen)
 
             for event in pygame.event.get():
+
+                # quit game
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     sys.exit()
+
+                # place domino
                 if event.type == pygame.MOUSEBUTTONUP:
-                    move_info = input()
-                    if self.board.has_place(move_info):
-                        # postavi dominu u board
-                        # postavi dominu na interfejs
-                        pass
-
-
-
+                    self.game.try_place_domino()
 
             pygame.display.update()
 
