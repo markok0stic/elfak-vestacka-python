@@ -9,8 +9,15 @@ def read_inputs():
     move_info = move_info.replace('[', '')
     move_info = move_info.replace(']', '')
     move_info = move_info.replace(',', '')
-    move = list(move_info)
-    move[0] = int(move[0])
+    move_info = move_info.replace(' ', '')
+
+    letter = move_info[-1]
+    move_info = move_info.replace(move_info[-1], '')
+    move = [int(move_info), letter]
+
+    if move[0] > 0:
+        move[0] -= 1
+
     return move
 
 
@@ -44,11 +51,12 @@ class Game:
                 for col in range(Const.COLS):
                     if self.board.squares[row][col].has_place():
                         piece = self.board.squares[row][col].piece
+
     def try_place_domino(self):
         move_info = read_inputs()
-        if self.board.has_place(move_info):
+        if self.board.board_has_place(move_info):
             self.board.occupy_squares(move_info)
-            #self.show_domino(move_info)
-            #switch_player()
+            # self.show_domino(move_info)
+            # switch_player()
         else:
             print('No room for that move!')

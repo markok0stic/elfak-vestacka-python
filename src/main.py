@@ -21,21 +21,25 @@ class Main:
 
         game = self.game
         screen = self.screen
-        while True:
-            game.show_bg(screen)
 
-            for event in pygame.event.get():
-
-                # quit game
-                if event.type == pygame.QUIT:
-                    pygame.quit()
-                    sys.exit()
-
-                # place domino
-                if event.type == pygame.MOUSEBUTTONUP:
-                    self.game.try_place_domino()
-
-            pygame.display.update()
+        inpt = '0'
+        while inpt != '-1':
+            self.game.try_place_domino()
+        # while True:
+        #     game.show_bg(screen)
+        #
+        #     for event in pygame.event.get():
+        #
+        #         # quit game
+        #         if event.type == pygame.QUIT:
+        #             pygame.quit()
+        #             sys.exit()
+        #
+        #         # place domino
+        #         if event.type == pygame.MOUSEBUTTONUP:
+        #             self.game.try_place_domino()
+        #
+        #     pygame.display.update()
 
 
 main = Main()
