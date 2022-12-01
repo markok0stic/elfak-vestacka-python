@@ -3,11 +3,14 @@ from const import *
 
 
 def valid_move(move_info):
-    if (move_info[0] + 1) > Const.ROWS and Const.PLACE_VERT:
-        return False
-    elif Const.get_letter_index(move_info[1]) + 1 > Const.COLS and not Const.PLACE_VERT:
-        return False
-    return True
+    res = False
+
+    if Const.PLACE_VERT and ((move_info[0] + 1) <= Const.ROWS) and (Const.get_letter_index(move_info[1]) <= Const.COLS):
+        res = True
+    elif not Const.PLACE_VERT and ((move_info[0]) <= Const.ROWS) and (Const.get_letter_index(move_info[1]) + 1 > Const.COLS):
+        res = True
+
+    return res
 
 
 class Board:
@@ -50,7 +53,8 @@ class Board:
         if Const.PLACE_VERT:
             self.squares[move[0]][int(Const.get_letter_index(move[1]))].piece = 'X'
             self.squares[move[0]][int(Const.get_letter_index(move[1]) + 1)].piece = 'X'
-            print((f'Postavljena domina na pozicijama: ({0},{1}) | ({0},{2})').format(move[0],move[1], Const.get_next_letter(move[1])))
+            print((f'Postavljena domina na pozicijama: ({0},{1}) | ({0},{2})').format(move[0], move[1],
+                                                                                      Const.get_next_letter(move[1])))
         else:
             self.squares[move[0]][Const.get_letter_index(move[1])].piece = 'O'
             self.squares[move[0]][Const.get_letter_index(move[1]) + 1].piece = 'O'
