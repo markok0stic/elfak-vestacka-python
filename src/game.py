@@ -29,8 +29,6 @@ class Game:
 
     def __init__(self):
         self.board = Board()
-        self.v_domino = Domino((255, 255, 255), 1.0, -1, (2, 1))
-        self.h_domino = Domino((0, 0, 0), 1.0, 1, (1, 2))
 
     def show_bg(self, surface):
         for row in range(Const.ROWS):
@@ -44,23 +42,31 @@ class Game:
 
                 pygame.draw.rect(surface, color, rect)
 
-    def show_domino(self, surface, direction):
-        if direction == Const.HDIR:
+    def show_domino(self, surface, square_coords):
 
-            for row in range(Const.ROWS):
-                for col in range(Const.COLS):
-                    if self.board.squares[row][col].has_place():
-                        piece = self.board.squares[row][col].piece
+        row1 = square_coords[0][0]
+        col1 = square_coords[0][1]
 
-    def try_place_domino(self, inputs=None):
+        row2 = square_coords[1][0]
+        col2 = square_coords[1][1]
+
+        if self.board.squares[row1][col1].has_domino():
+            rect = (col1 * Const.SQSIZE, row1 * Const.SQSIZE, Const.SQSIZE, Const.SQSIZE)
+            pygame.draw.rect(surface, (233, 123, 55), rect)
+
+        if self.board.squares[row2][col2].has_domino():
+            rect = (col2 * Const.SQSIZE, row2 * Const.SQSIZE, Const.SQSIZE, Const.SQSIZE)
+            pygame.draw.rect(surface, (233, 123, 55), rect)
+
+    def try_place_domino(self, screen, inputs=None):
         move_info = inputs
 
         if inputs is None:
             move_info = read_inputs()
 
         if self.board.board_has_place(move_info):
-            self.board.occupy_squares(move_info)
-            # self.show_domino(move_info)
+            square_coords = self.board.occupy_squares(move_info)
+            self.show_domino(screen, square_coords)
             switch_player()
         else:
             print('No room for that move!')

@@ -27,8 +27,9 @@ class Main:
         #     self.game.try_place_domino()
 
         # for testing threw gui
+
+        game.show_bg(screen)
         while True:
-            game.show_bg(screen)
 
             for event in pygame.event.get():
 
@@ -41,7 +42,7 @@ class Main:
                 if event.type == pygame.MOUSEBUTTONUP:
 
                     move_info = Const.read_coords(event.pos)
-                    self.game.try_place_domino(move_info)
+                    game.try_place_domino(screen, move_info)
 
             pygame.display.update()
 

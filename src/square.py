@@ -14,3 +14,6 @@ class Square:
 
     def occupy(self, letter):
         self.piece = [letter]
+
+    def has_domino(self):
+        return self.domino is not None
