@@ -57,6 +57,6 @@ class Game:
         if self.board.board_has_place(move_info):
             self.board.occupy_squares(move_info)
             # self.show_domino(move_info)
-            # switch_player()
+            switch_player()
         else:
             print('No room for that move!')
