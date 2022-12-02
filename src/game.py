@@ -24,6 +24,7 @@ def read_inputs():
 def switch_player():
     Const.PLACE_VERT = not Const.PLACE_VERT
 
+
 class Game:
 
     def __init__(self):
@@ -52,23 +53,27 @@ class Game:
         if Const.PLACE_VERT:
             color = Const.VCOLOR
             if self.board.squares[row1][col1].has_domino():
-                rect = (col1 * Const.SQSIZE + Const.DOMINO_MARGIN, row1 * Const.SQSIZE + Const.DOMINO_MARGIN, Const.SQSIZE - 2*Const.DOMINO_MARGIN, Const.SQSIZE - Const.DOMINO_MARGIN)
+                rect = (col1 * Const.SQSIZE + Const.DOMINO_MARGIN, row1 * Const.SQSIZE + Const.DOMINO_MARGIN,
+                        Const.SQSIZE - 2 * Const.DOMINO_MARGIN, Const.SQSIZE - Const.DOMINO_MARGIN)
                 pygame.draw.rect(surface, color, rect)
 
             if self.board.squares[row2][col2].has_domino():
-                rect = (col2 * Const.SQSIZE + Const.DOMINO_MARGIN, row2 * Const.SQSIZE, Const.SQSIZE  - 2*Const.DOMINO_MARGIN, Const.SQSIZE - Const.DOMINO_MARGIN)
+                rect = (
+                col2 * Const.SQSIZE + Const.DOMINO_MARGIN, row2 * Const.SQSIZE, Const.SQSIZE - 2 * Const.DOMINO_MARGIN,
+                Const.SQSIZE - Const.DOMINO_MARGIN)
                 pygame.draw.rect(surface, color, rect)
         else:
-            color =Const.HCOLOR
+            color = Const.HCOLOR
             if self.board.squares[row1][col1].has_domino():
-                rect = (col1 * Const.SQSIZE + Const.DOMINO_MARGIN, row1 * Const.SQSIZE + Const.DOMINO_MARGIN, Const.SQSIZE - Const.DOMINO_MARGIN, Const.SQSIZE - 2*Const.DOMINO_MARGIN)
+                rect = (col1 * Const.SQSIZE + Const.DOMINO_MARGIN, row1 * Const.SQSIZE + Const.DOMINO_MARGIN,
+                        Const.SQSIZE - Const.DOMINO_MARGIN, Const.SQSIZE - 2 * Const.DOMINO_MARGIN)
                 pygame.draw.rect(surface, color, rect)
 
             if self.board.squares[row2][col2].has_domino():
-                rect = (col2 * Const.SQSIZE, row2 * Const.SQSIZE + Const.DOMINO_MARGIN, Const.SQSIZE - Const.DOMINO_MARGIN, Const.SQSIZE - 2*Const.DOMINO_MARGIN)
+                rect = (
+                col2 * Const.SQSIZE, row2 * Const.SQSIZE + Const.DOMINO_MARGIN, Const.SQSIZE - Const.DOMINO_MARGIN,
+                Const.SQSIZE - 2 * Const.DOMINO_MARGIN)
                 pygame.draw.rect(surface, color, rect)
-
-        
 
     def try_place_domino(self, screen, inputs=None):
         move_info = inputs
@@ -100,10 +105,13 @@ class Game:
         else:
             text = Const.WINNER_FONT.render("Orange Wins!", 1, Const.WHITE_COLOR)
 
-        frame = ((Const.COLS * Const.SQSIZE//2 - text.get_width()//2 - 7), (Const.ROWS * Const.SQSIZE//2 - text.get_height()//2 - 7), text.get_width() + 14, text.get_height() + 14)    
-        canvas = ((Const.COLS * Const.SQSIZE//2 - text.get_width()//2), (Const.ROWS * Const.SQSIZE//2 - text.get_height()//2), text.get_width(), text.get_height())
-        
-        pygame.draw.rect(screen,(212, 175, 55) , frame)
-        pygame.draw.rect(screen,(119, 154, 88) , canvas)
-        screen.blit(text, ((Const.COLS * Const.SQSIZE//2 - text.get_width()//2), (Const.ROWS * Const.SQSIZE//2 - text.get_height()//2)))
-                    
+        frame = ((Const.COLS * Const.SQSIZE // 2 - text.get_width() // 2 - 7),
+                 (Const.ROWS * Const.SQSIZE // 2 - text.get_height() // 2 - 7), text.get_width() + 14,
+                 text.get_height() + 14)
+        canvas = ((Const.COLS * Const.SQSIZE // 2 - text.get_width() // 2),
+                  (Const.ROWS * Const.SQSIZE // 2 - text.get_height() // 2), text.get_width(), text.get_height())
+
+        pygame.draw.rect(screen, (212, 175, 55), frame)
+        pygame.draw.rect(screen, (119, 154, 88), canvas)
+        screen.blit(text, ((Const.COLS * Const.SQSIZE // 2 - text.get_width() // 2),
+                           (Const.ROWS * Const.SQSIZE // 2 - text.get_height() // 2)))

@@ -17,7 +17,7 @@ class GameForm:
         cols = tkinter.IntVar()
         first = tkinter.StringVar()
 
-        def getRowsANDCols(r, c, f):
+        def get_rows_and_cols(r, c, f):
             Const.ROWS = r.get()
             Const.COLS = c.get()
             Const.FIRST = f.get()
@@ -30,6 +30,6 @@ class GameForm:
         ttk.Label(frm, text="Play first:").grid(column=0, row=3)
         ttk.Radiobutton(frm, text="Player", variable=first, value=0).grid(column=1, row=3)
         ttk.Radiobutton(frm, text="Computer", variable=first, value=1).grid(column=2, row=3)
-        ttk.Button(frm, text="Play", command=partial(getRowsANDCols, rows, cols, first)).grid(column=1, row=4)
+        ttk.Button(frm, text="Play", command=partial(get_rows_and_cols, rows, cols, first)).grid(column=1, row=4)
 
         root.mainloop()

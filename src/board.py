@@ -2,6 +2,7 @@ from square import Square
 from const import *
 from domino import *
 
+
 def valid_move(move_info):
     res = False
     if Const.PLACE_VERT and ((move_info[0] + 1) <= Const.ROWS - 1) and (

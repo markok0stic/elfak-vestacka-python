@@ -6,6 +6,7 @@ from game import Game
 from form import GameForm
 from board import Board
 
+
 class Main:
     def __init__(self):
         self.screen = None
@@ -41,14 +42,12 @@ class Main:
 
                 # place domino
                 if event.type == pygame.MOUSEBUTTONUP:
-
                     move_info = Const.read_coords(event.pos)
                     game.try_place_domino(screen, move_info)
 
                 # end of game
                 if event.type == Const.END_EVENT:
                     Game.end_of_game(screen)
-
 
             pygame.display.update()
 
