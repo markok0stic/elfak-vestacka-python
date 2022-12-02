@@ -4,10 +4,10 @@ from const import *
 
 def valid_move(move_info):
     res = False
-
-    if Const.PLACE_VERT and ((move_info[0] + 1) <= Const.ROWS - 1) and (Const.get_letter_index(move_info[1]) <= Const.COLS):
+    if Const.PLACE_VERT and ((move_info[0] + 1) <= Const.ROWS - 1) and (
+            Const.get_letter_index(move_info[1]) <= Const.COLS - 1):
         res = True
-    elif not Const.PLACE_VERT and ((move_info[0]) <= Const.ROWS - 1) and (Const.get_letter_index(move_info[1]) + 1 > Const.COLS):
+    elif not Const.PLACE_VERT and ((move_info[0]) <= Const.ROWS - 1) and (Const.get_letter_index(move_info[1]) + 1 <= Const.COLS - 1):
         res = True
 
     return res
@@ -42,7 +42,7 @@ class Board:
 
         # valid move check is free
         if self.squares[move[0]][Const.get_letter_index(move[1])].has_place():
-            if Const.PLACE_VERT and self.squares[move[0]+1][Const.get_letter_index(move[1])].has_place():
+            if Const.PLACE_VERT and self.squares[move[0] + 1][Const.get_letter_index(move[1])].has_place():
                 res = True
             elif not Const.PLACE_VERT and self.squares[move[0]][Const.get_letter_index(move[1]) + 1].has_place():
                 res = True
@@ -50,18 +50,18 @@ class Board:
         return res
 
     def occupy_squares(self, move):
-        print (move)
+        print(move)
         if Const.PLACE_VERT:
             self.squares[move[0]][int(Const.get_letter_index(move[1]))].piece = 'X'
             self.squares[move[0] + 1][int(Const.get_letter_index(move[1]))].piece = 'X'
-            self.print_table()
         else:
             self.squares[move[0]][Const.get_letter_index(move[1])].piece = 'O'
             self.squares[move[0]][Const.get_letter_index(move[1]) + 1].piece = 'O'
+        self.print_table()
 
     def print_table(self):
-        for i in self.squares:
-            z = [self.squares.index(i) + 1]
-            for j in i:
+        for i in range(Const.ROWS - 1, -1, -1):
+            z = [(i + 1)]
+            for j in self.squares[i]:
                 z.append(j.piece)
             print(z)
