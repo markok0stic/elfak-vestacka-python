@@ -1,9 +1,22 @@
+from pygame import font
+from pygame import USEREVENT
+font.init()
+
 class Const:
     WIDTH = 750
     HEIGHT = 750
+    WINNER_FONT = font.SysFont('comicsans', 40)
+    FPS = 60
 
     HDIR = -10
     VDIR = -11
+
+    WHITE_COLOR = (255, 255, 255)
+    VCOLOR = (233, 123, 55)
+    HCOLOR = (0, 0, 0)
+    DOMINO_MARGIN = 7
+
+    END_EVENT = USEREVENT + 1
 
     ROWS = 10
     COLS = 10
@@ -23,10 +36,13 @@ class Const:
     def get_letter_index(letter):
         return Const.ALFABET.index(letter)
 
+    def get_letter(index):
+        return Const.ALFABET[index]
+
     def read_coords(pos):
         x, y = pos
         return [y // Const.SQSIZE - (1 if Const.PLACE_VERT else 0), Const.ALFABET[x // Const.SQSIZE]]
-
+    
 
 staticmethod(Const.get_next_letter)
 staticmethod(Const.get_letter_index)

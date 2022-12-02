@@ -22,6 +22,7 @@ class Main:
         game = self.game
         screen = self.screen
 
+        clock = pygame.time.Clock()
         # for testing threw terminal
         # while True:
         #     self.game.try_place_domino()
@@ -30,7 +31,7 @@ class Main:
 
         game.show_bg(screen)
         while True:
-
+            clock.tick(Const.FPS)
             for event in pygame.event.get():
 
                 # quit game
@@ -43,6 +44,11 @@ class Main:
 
                     move_info = Const.read_coords(event.pos)
                     game.try_place_domino(screen, move_info)
+
+                # end of game
+                if event.type == Const.END_EVENT:
+                    Game.end_of_game(screen)
+
 
             pygame.display.update()
 
