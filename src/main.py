@@ -22,24 +22,28 @@ class Main:
         game = self.game
         screen = self.screen
 
-        inpt = '0'
-        while inpt != '-1':
-            self.game.try_place_domino()
+        # for testing threw terminal
         # while True:
-        #     game.show_bg(screen)
-        #
-        #     for event in pygame.event.get():
-        #
-        #         # quit game
-        #         if event.type == pygame.QUIT:
-        #             pygame.quit()
-        #             sys.exit()
-        #
-        #         # place domino
-        #         if event.type == pygame.MOUSEBUTTONUP:
-        #             self.game.try_place_domino()
-        #
-        #     pygame.display.update()
+        #     self.game.try_place_domino()
+
+        # for testing threw gui
+        while True:
+            game.show_bg(screen)
+
+            for event in pygame.event.get():
+
+                # quit game
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    sys.exit()
+
+                # place domino
+                if event.type == pygame.MOUSEBUTTONUP:
+
+                    move_info = Const.read_coords(event.pos)
+                    self.game.try_place_domino(move_info)
+
+            pygame.display.update()
 
 
 main = Main()
