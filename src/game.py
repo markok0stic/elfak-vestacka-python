@@ -52,8 +52,12 @@ class Game:
                     if self.board.squares[row][col].has_place():
                         piece = self.board.squares[row][col].piece
 
-    def try_place_domino(self):
-        move_info = read_inputs()
+    def try_place_domino(self, inputs=None):
+        move_info = inputs
+
+        if inputs is None:
+            move_info = read_inputs()
+
         if self.board.board_has_place(move_info):
             self.board.occupy_squares(move_info)
             # self.show_domino(move_info)

@@ -4,11 +4,13 @@ from const import *
 
 def valid_move(move_info):
     res = False
-    if Const.PLACE_VERT and ((move_info[0] + 1) <= Const.ROWS - 1) and (
-            Const.get_letter_index(move_info[1]) <= Const.COLS - 1):
+    if Const.PLACE_VERT and ((move_info[0] + 1) <= Const.ROWS - 1) and (Const.get_letter_index(move_info[1]) <= Const.COLS - 1):
         res = True
     elif not Const.PLACE_VERT and ((move_info[0]) <= Const.ROWS - 1) and (Const.get_letter_index(move_info[1]) + 1 <= Const.COLS - 1):
         res = True
+
+    if move_info[0] < 0:
+        res = False
 
     return res
 
@@ -31,7 +33,7 @@ class Board:
             for j in range(0, Const.COLS):
                 self.squares[i][j] = Square(i, Const.ALFABET[j])
 
-        self.print_table()
+        self.print_table_normal()
 
     def board_has_place(self, move):
         res = False
@@ -57,11 +59,19 @@ class Board:
         else:
             self.squares[move[0]][Const.get_letter_index(move[1])].piece = 'O'
             self.squares[move[0]][Const.get_letter_index(move[1]) + 1].piece = 'O'
-        self.print_table()
+        self.print_table_normal()
 
-    def print_table(self):
+    def print_table_inverted(self):
         for i in range(Const.ROWS - 1, -1, -1):
             z = [(i + 1)]
             for j in self.squares[i]:
                 z.append(j.piece)
             print(z)
+
+    def print_table_normal(self):
+        for i in self.squares:
+            z = [self.squares.index(i) + 1]
+            for j in i:
+                z.append(j.piece)
+            print(z)
+
