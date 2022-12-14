@@ -1,7 +1,7 @@
 import pygame
 from const import *
 from board import Board
-from domino import Domino
+from domino import *
 
 
 def read_inputs():
@@ -51,29 +51,13 @@ class Game:
         col2 = square_coords[1][1]
 
         if Const.PLACE_VERT:
-            color = Const.VCOLOR
-            if self.board.squares[row1][col1].has_domino():
-                rect = (col1 * Const.SQSIZE + Const.DOMINO_MARGIN, row1 * Const.SQSIZE + Const.DOMINO_MARGIN,
-                        Const.SQSIZE - 2 * Const.DOMINO_MARGIN, Const.SQSIZE - Const.DOMINO_MARGIN)
-                pygame.draw.rect(surface, color, rect)
+            if self.board.squares[row1][col1].has_domino() and self.board.squares[row2][col2].has_domino():
+               self.board.draw_vertical_domino(col1, row1, col2, row2, surface, Const.VCOLOR)
 
-            if self.board.squares[row2][col2].has_domino():
-                rect = (
-                col2 * Const.SQSIZE + Const.DOMINO_MARGIN, row2 * Const.SQSIZE, Const.SQSIZE - 2 * Const.DOMINO_MARGIN,
-                Const.SQSIZE - Const.DOMINO_MARGIN)
-                pygame.draw.rect(surface, color, rect)
         else:
-            color = Const.HCOLOR
-            if self.board.squares[row1][col1].has_domino():
-                rect = (col1 * Const.SQSIZE + Const.DOMINO_MARGIN, row1 * Const.SQSIZE + Const.DOMINO_MARGIN,
-                        Const.SQSIZE - Const.DOMINO_MARGIN, Const.SQSIZE - 2 * Const.DOMINO_MARGIN)
-                pygame.draw.rect(surface, color, rect)
+            if self.board.squares[row1][col1].has_domino() and self.board.squares[row2][col2].has_domino():
+                self.board.draw_horizontal_domino(col1, row1, col2, row2, surface, Const.HCOLOR)
 
-            if self.board.squares[row2][col2].has_domino():
-                rect = (
-                col2 * Const.SQSIZE, row2 * Const.SQSIZE + Const.DOMINO_MARGIN, Const.SQSIZE - Const.DOMINO_MARGIN,
-                Const.SQSIZE - 2 * Const.DOMINO_MARGIN)
-                pygame.draw.rect(surface, color, rect)
 
     def try_place_domino(self, screen, inputs=None):
         move_info = inputs
@@ -115,3 +99,7 @@ class Game:
         pygame.draw.rect(screen, (119, 154, 88), canvas)
         screen.blit(text, ((Const.COLS * Const.SQSIZE // 2 - text.get_width() // 2),
                            (Const.ROWS * Const.SQSIZE // 2 - text.get_height() // 2)))
+
+
+    #def possible_moves(self):
+

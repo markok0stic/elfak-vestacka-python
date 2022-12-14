@@ -34,7 +34,7 @@ class Board:
 
         for i in range(0, Const.ROWS):
             for j in range(0, Const.COLS):
-                self.squares[i][j] = Square(i, Const.ALFABET[j])
+                self.squares[i][j] = Square(i, Const.ALFABET[j]) ###  ADD HEURISTIC TO SQUARE  ###
 
         self.print_table_normal()
 
@@ -88,3 +88,20 @@ class Board:
             for j in i:
                 z.append(j.piece)
             print(z)
+
+    def draw_vertical_domino(usles, col1, row1, col2, row2, surface, color):  ###  IZ NEKOG RAZLOGA PRVI ARGUMRNT KOD POZIVA SE EN VIDI ???? 
+        rect1 = (col1 * Const.SQSIZE + Const.DOMINO_MARGIN, row1 * Const.SQSIZE + Const.DOMINO_MARGIN,
+                        Const.SQSIZE - 2 * Const.DOMINO_MARGIN, Const.SQSIZE - Const.DOMINO_MARGIN)
+        pygame.draw.rect(surface, color, rect1)
+        
+        rect2 = (col2 * Const.SQSIZE + Const.DOMINO_MARGIN, row2 * Const.SQSIZE, Const.SQSIZE - 2 * Const.DOMINO_MARGIN,
+                Const.SQSIZE - Const.DOMINO_MARGIN)
+        pygame.draw.rect(surface, color, rect2)
+
+    def draw_horizontal_domino(usles, col1, row1, col2, row2, surface, color):  ###  IZ NEKOG RAZLOGA PRVI ARGUMRNT KOD POZIVA SE EN VIDI ????
+        rect1 = (col1 * Const.SQSIZE + Const.DOMINO_MARGIN, row1 * Const.SQSIZE + Const.DOMINO_MARGIN,
+                        Const.SQSIZE - Const.DOMINO_MARGIN, Const.SQSIZE - 2 * Const.DOMINO_MARGIN)
+        pygame.draw.rect(surface, color, rect1)
+        rect2 = (col2 * Const.SQSIZE, row2 * Const.SQSIZE + Const.DOMINO_MARGIN, Const.SQSIZE - Const.DOMINO_MARGIN,
+                Const.SQSIZE - 2 * Const.DOMINO_MARGIN)
+        pygame.draw.rect(surface, color, rect2)
