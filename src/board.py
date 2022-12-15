@@ -1,6 +1,7 @@
 from square import Square
 from const import *
 from domino import *
+import pygame
 
 
 def valid_move(move_info):
@@ -89,7 +90,7 @@ class Board:
                 z.append(j.piece)
             print(z)
 
-    def draw_vertical_domino(usles, col1, row1, col2, row2, surface, color):  ###  IZ NEKOG RAZLOGA PRVI ARGUMRNT KOD POZIVA SE EN VIDI ???? 
+    def draw_vertical_domino(usless, col1, row1, col2, row2, surface, color):  ###  IZ NEKOG RAZLOGA PRVI ARGUMRNT KOD POZIVA SE NE VIDI ???? 
         rect1 = (col1 * Const.SQSIZE + Const.DOMINO_MARGIN, row1 * Const.SQSIZE + Const.DOMINO_MARGIN,
                         Const.SQSIZE - 2 * Const.DOMINO_MARGIN, Const.SQSIZE - Const.DOMINO_MARGIN)
         pygame.draw.rect(surface, color, rect1)
@@ -98,7 +99,7 @@ class Board:
                 Const.SQSIZE - Const.DOMINO_MARGIN)
         pygame.draw.rect(surface, color, rect2)
 
-    def draw_horizontal_domino(usles, col1, row1, col2, row2, surface, color):  ###  IZ NEKOG RAZLOGA PRVI ARGUMRNT KOD POZIVA SE EN VIDI ????
+    def draw_horizontal_domino(usless, col1, row1, col2, row2, surface, color):  ###  IZ NEKOG RAZLOGA PRVI ARGUMRNT KOD POZIVA SE NE VIDI ????
         rect1 = (col1 * Const.SQSIZE + Const.DOMINO_MARGIN, row1 * Const.SQSIZE + Const.DOMINO_MARGIN,
                         Const.SQSIZE - Const.DOMINO_MARGIN, Const.SQSIZE - 2 * Const.DOMINO_MARGIN)
         pygame.draw.rect(surface, color, rect1)

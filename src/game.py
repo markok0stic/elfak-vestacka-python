@@ -69,6 +69,7 @@ class Game:
             square_coords = self.board.occupy_squares(move_info)
             self.show_domino(screen, square_coords)
             switch_player()
+            print(self.possible_moves())
         else:
             print('No room for that move!')
 
@@ -100,6 +101,11 @@ class Game:
         screen.blit(text, ((Const.COLS * Const.SQSIZE // 2 - text.get_width() // 2),
                            (Const.ROWS * Const.SQSIZE // 2 - text.get_height() // 2)))
 
+    def possible_moves(self):
+        response = []
+        for row in range(0, Const.ROWS):
+            for col in range(0, Const.COLS):
+                if self.board.board_has_place((row, Const.get_letter(col))):
+                    response.append((row, col))
 
-    #def possible_moves(self):
-
+        return response            
