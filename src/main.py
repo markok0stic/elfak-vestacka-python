@@ -24,12 +24,8 @@ class Main:
         screen = self.screen
 
         clock = pygame.time.Clock()
-        # for testing threw terminal
-        # while True:
-        #     self.game.try_place_domino()
 
-        # for testing threw gui
-
+        # for testing through gui
         game.show_bg(screen)
         while True:
             clock.tick(Const.FPS)

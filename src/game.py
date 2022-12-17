@@ -52,12 +52,11 @@ class Game:
 
         if Const.PLACE_VERT:
             if self.board.squares[row1][col1].has_domino() and self.board.squares[row2][col2].has_domino():
-               self.board.draw_vertical_domino(col1, row1, col2, row2, surface, Const.VCOLOR)
+                self.board.draw_vertical_domino(col1, row1, col2, row2, surface, Const.VCOLOR)
 
         else:
             if self.board.squares[row1][col1].has_domino() and self.board.squares[row2][col2].has_domino():
                 self.board.draw_horizontal_domino(col1, row1, col2, row2, surface, Const.HCOLOR)
-
 
     def try_place_domino(self, screen, inputs=None):
         move_info = inputs
@@ -69,9 +68,12 @@ class Game:
             square_coords = self.board.occupy_squares(move_info)
             self.show_domino(screen, square_coords)
             switch_player()
+            print('Possible moves:')
             print(self.possible_moves())
+            print('\n')
         else:
             print('No room for that move!')
+            print('\n')
 
         if not self.has_more_moves():
             pygame.event.post(pygame.event.Event(Const.END_EVENT))
@@ -108,4 +110,4 @@ class Game:
                 if self.board.board_has_place((row, Const.get_letter(col))):
                     response.append((row, col))
 
-        return response            
+        return response

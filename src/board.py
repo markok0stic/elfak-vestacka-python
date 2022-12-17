@@ -57,6 +57,7 @@ class Board:
 
     def occupy_squares(self, move):
         res = []
+        print('Move: ')
         print(move)
         if Const.PLACE_VERT:
             res.append([move[0], int(Const.get_letter_index(move[1]))])
@@ -72,6 +73,7 @@ class Board:
             self.squares[move[0]][Const.get_letter_index(move[1])].domino = Domino()
             self.squares[move[0]][Const.get_letter_index(move[1]) + 1].piece = 'O'
             self.squares[move[0]][Const.get_letter_index(move[1]) + 1].domino = Domino()
+        print('Table:')
         self.print_table_normal()
 
         return res
@@ -90,7 +92,7 @@ class Board:
                 z.append(j.piece)
             print(z)
 
-    def draw_vertical_domino(usless, col1, row1, col2, row2, surface, color):  ###  IZ NEKOG RAZLOGA PRVI ARGUMRNT KOD POZIVA SE NE VIDI ???? 
+    def draw_vertical_domino(self, col1, row1, col2, row2, surface, color):
         rect1 = (col1 * Const.SQSIZE + Const.DOMINO_MARGIN, row1 * Const.SQSIZE + Const.DOMINO_MARGIN,
                         Const.SQSIZE - 2 * Const.DOMINO_MARGIN, Const.SQSIZE - Const.DOMINO_MARGIN)
         pygame.draw.rect(surface, color, rect1)
@@ -99,7 +101,7 @@ class Board:
                 Const.SQSIZE - Const.DOMINO_MARGIN)
         pygame.draw.rect(surface, color, rect2)
 
-    def draw_horizontal_domino(usless, col1, row1, col2, row2, surface, color):  ###  IZ NEKOG RAZLOGA PRVI ARGUMRNT KOD POZIVA SE NE VIDI ????
+    def draw_horizontal_domino(self, col1, row1, col2, row2, surface, color):
         rect1 = (col1 * Const.SQSIZE + Const.DOMINO_MARGIN, row1 * Const.SQSIZE + Const.DOMINO_MARGIN,
                         Const.SQSIZE - Const.DOMINO_MARGIN, Const.SQSIZE - 2 * Const.DOMINO_MARGIN)
         pygame.draw.rect(surface, color, rect1)
