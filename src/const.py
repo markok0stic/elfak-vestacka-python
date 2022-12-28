@@ -7,6 +7,8 @@ class Const:
     HEIGHT = 750
     WINNER_FONT = font.SysFont('comicsans', 40)
     FPS = 60
+    INFINITIVE = 9999
+    START = False
 
     HDIR = -10
     VDIR = -11
@@ -20,7 +22,7 @@ class Const:
 
     ROWS = 10
     COLS = 10
-    FIRST_PLAYER = 0
+    PLAYER_TURN = 0
 
     PLACE_VERT = True
 

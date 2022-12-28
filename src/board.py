@@ -35,8 +35,15 @@ class Board:
 
         for i in range(0, Const.ROWS):
             for j in range(0, Const.COLS):
-                self.squares[i][j] = Square(i, Const.ALFABET[j]) ###  ADD HEURISTIC TO SQUARE  ###
+                self.squares[i][j] = Square(i, Const.ALFABET[j])
 
+        self.print_table_normal()
+
+    def copy_board(self, board): # ne kopira lepo
+        for i in range(0, Const.ROWS):
+            for j in range(0, Const.COLS):
+                self.squares[i][j] = board.squares[i][j]
+        
         self.print_table_normal()
 
     def board_has_place(self, move):

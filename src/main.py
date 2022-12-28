@@ -14,6 +14,7 @@ class Main:
         self.board = None
         GameForm()
 
+
     def mainloop(self):
         self.screen = pygame.display.set_mode((Const.COLS * Const.SQSIZE, Const.ROWS * Const.SQSIZE))
         self.game = Game()
@@ -36,17 +37,23 @@ class Main:
                     pygame.quit()
                     sys.exit()
 
-                # place domino
-                if event.type == pygame.MOUSEBUTTONUP:
-                    move_info = Const.read_coords(event.pos)
-                    game.try_place_domino(screen, move_info)
-
                 # end of game
                 if event.type == Const.END_EVENT:
                     Game.end_of_game(screen)
 
+                # place domino
+                if Const.PLAYER_TURN and Const.START:
+                    if event.type == pygame.MOUSEBUTTONUP:
+                        move_info = Const.read_coords(event.pos)
+                        game.try_place_domino(screen, move_info)
+                else:
+                    if Const.START:
+                        game.computer_play(screen)
+
+
+
             pygame.display.update()
 
-
 main = Main()
-main.mainloop()
+if(Const.START):
+    main.mainloop()

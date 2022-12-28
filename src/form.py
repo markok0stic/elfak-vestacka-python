@@ -20,7 +20,8 @@ class GameForm:
         def get_rows_and_cols(r, c, f):
             Const.ROWS = r.get()
             Const.COLS = c.get()
-            Const.FIRST = f.get()
+            Const.PLAYER_TURN = bool(f.get())
+            Const.START = True
             root.destroy()
 
         ttk.Label(frm, text="Rows:", width=5).grid(column=0, row=1)
@@ -28,8 +29,8 @@ class GameForm:
         ttk.Label(frm, text="Cols:", width=5).grid(column=0, row=2)
         ttk.Entry(frm, width=8, textvariable=cols).grid(column=1, row=2, pady=1)
         ttk.Label(frm, text="Play first:").grid(column=0, row=3)
-        ttk.Radiobutton(frm, text="Player", variable=first, value=0).grid(column=1, row=3)
-        ttk.Radiobutton(frm, text="Computer", variable=first, value=1).grid(column=2, row=3)
+        ttk.Radiobutton(frm, text="Player", variable=first, value=1).grid(column=1, row=3)
+        ttk.Radiobutton(frm, text="Computer", variable=first, value="").grid(column=2, row=3)
         ttk.Button(frm, text="Play", command=partial(get_rows_and_cols, rows, cols, first)).grid(column=1, row=4)
 
         root.mainloop()
