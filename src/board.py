@@ -37,13 +37,14 @@ class Board:
             for j in range(0, Const.COLS):
                 self.squares[i][j] = Square(i, Const.ALFABET[j])
 
-        self.print_table_normal()
+        #self.print_table_normal()
 
     def copy_board(self, board): # ne kopira lepo
         for i in range(0, Const.ROWS):
             for j in range(0, Const.COLS):
-                self.squares[i][j] = board.squares[i][j]
-        
+                self.squares[i][j].copy_square(board.squares[i][j])
+
+        print("\nCopy table\n")
         self.print_table_normal()
 
     def board_has_place(self, move):
@@ -81,7 +82,7 @@ class Board:
             self.squares[move[0]][Const.get_letter_index(move[1]) + 1].piece = 'O'
             self.squares[move[0]][Const.get_letter_index(move[1]) + 1].domino = Domino()
         print('Table:')
-        self.print_table_normal()
+        self.print_table_normal()  
 
         return res
 

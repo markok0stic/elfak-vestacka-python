@@ -25,6 +25,8 @@ def switch_player():
     Const.PLACE_VERT = not Const.PLACE_VERT
     Const.PLAYER_TURN = not Const.PLAYER_TURN 
 
+def save_context():
+    return(Const.PLACE_VERT, Const.PLAYER_TURN)
 
 class Game:
 
@@ -68,13 +70,17 @@ class Game:
         if self.board.board_has_place(move_info):
             square_coords = self.board.occupy_squares(move_info)
             self.show_domino(screen, square_coords)
+            if Const.PLACE_VERT:
+                Const.VPUT_SOUND.play()
+            else:
+                Const.HPUT_SOUND.play() 
             switch_player()
             print('Possible moves:')
             print(self.possible_moves(self.board))
             print('\n')
         else:
             print('No room for that move!')
-            print('\n')
+            print('\n') 
 
         if not self.has_more_moves():
             pygame.event.post(pygame.event.Event(Const.END_EVENT))
@@ -90,8 +96,10 @@ class Game:
     def end_of_game(screen):
         if Const.PLAYER_TURN:
             text = Const.WINNER_FONT.render("YOU LOST!", 1, Const.WHITE_COLOR)
+            Const.LOSE_SOUND.play()
         else:
             text = Const.WINNER_FONT.render("YOU WON!", 1, Const.WHITE_COLOR)
+            Const.WIN_SOUND.play()
 
         frame = ((Const.COLS * Const.SQSIZE // 2 - text.get_width() // 2 - 7),
                  (Const.ROWS * Const.SQSIZE // 2 - text.get_height() // 2 - 7), text.get_width() + 14,
@@ -114,58 +122,73 @@ class Game:
 
         return response
 
-    def new_state(self, move, state): # kreira novo stanje NE RADI BAS, POPUNJAVA ODMAH SVA STANJA DO KRAJA
-        s = Board()
-        s.copy_board(state)
-        s.occupy_squares((move[0], Const.get_letter(move[1])))
-        
-        return s
+    def opponent_possible_moves(self, board):    
+        switch_player()
+        response = self.possible_moves(board)
+        switch_player()
+        return response
 
-    def evaluate_state(self, state): # vraca heuristiku stanja MORA BOLJA HEURISTIKA
+    def new_state(self, move, board_state): # kreira novo stanje 
+        new_state = Board()
+        new_state.copy_board(board_state)
+        new_state.occupy_squares((move[0], Const.get_letter(move[1])))
+        print("Moves: ")
+        print(self.possible_moves(board_state))
+
+        return new_state
+
+    def evaluate_state(self, board_state): # vraca heuristiku stanja MORA BOLJA HEURISTIKA
         response = 0
-        for row in range(0, Const.ROWS):
-            for col in range(0, Const.COLS):
-                if state.board_has_place((row, Const.get_letter(col))):
-                    response += 1
+        my_moves = self.possible_moves(board_state)
+        opponent_moves = self.opponent_possible_moves(board_state)
+        response = len(opponent_moves) - len(my_moves)
 
         return response
     
-    def min_best_move(self, state, depth, alpha, beta, next_move = None): # vraca 
-        list_of_moves = self.possible_moves(state)
+    def min_best_move(self, board_state, depth, alpha, beta, next_move = None):
+        list_of_moves = self.possible_moves(board_state)
         if depth == 0 or list_of_moves is None or len(list_of_moves) == 0:
-            return (next_move, self.evaluate_state(state))
+            return (next_move, self.evaluate_state(board_state))
         else:
             for move in list_of_moves:
-                beta = min(beta, self.max_best_move(self.new_state(move, state), depth-1, alpha, beta,
+                beta = min(beta, self.max_best_move(self.new_state(move, board_state), depth-1, alpha, beta,
                  move if next_move is None else next_move), key = lambda x: x[1])
                 if beta[1] <= alpha[1]:
                     return alpha
         return beta
 
-    def max_best_move(self, state, depth, alpha, beta, next_move = None):
-        list_of_moves = self.possible_moves(state)
+    def max_best_move(self, board_state, depth, alpha, beta, next_move = None):
+        list_of_moves = self.possible_moves(board_state)
         if depth == 0 or list_of_moves is None or len(list_of_moves) == 0:
-            return (next_move, self.evaluate_state(state))
+            return (next_move, self.evaluate_state(board_state))
         else:
             for move in list_of_moves:
-                alpha = max(alpha, self.min_best_move(self.new_state(move, state), depth-1, alpha, beta,
+                alpha = max(alpha, self.min_best_move(self.new_state(move, board_state), depth-1, alpha, beta,
                  move if next_move is None else next_move), key = lambda x: x[1])
                 if alpha[1] >= beta[1]:
                     return beta
         return alpha
 
-
-    def minmax_best_move(self, state, depth, alpha=(None, -Const.INFINITIVE), beta=(None, Const.INFINITIVE)):
+    def minmax_best_move(self, board_state, depth, alpha=(None, -Const.INFINITIVE), beta=(None, Const.INFINITIVE)):
         if Const.PLAYER_TURN:
-            return self.max_best_move(state, depth, alpha, beta)
+            return self.max_best_move(board_state, depth, alpha, beta)
         else:
-            return self.min_best_move(state, depth, alpha, beta)
+            return self.min_best_move(board_state, depth, alpha, beta)
 
     def computer_play(self, screen):
+        context = save_context()
         move = self.minmax_best_move(self.board, 3)
-        
+        Const.PLACE_VERT = context[0]
+        Const.PLAYER_TURN = context[1]
+
         square_coords = self.board.occupy_squares((move[0][0], Const.get_letter(move[0][1])))
         self.show_domino(screen, square_coords)
+        
+        if Const.PLACE_VERT:
+            Const.VPUT_SOUND.play()
+        else:
+            Const.HPUT_SOUND.play()  
+        
         switch_player()
         
         if not self.has_more_moves():

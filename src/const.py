@@ -1,6 +1,9 @@
 from pygame import font
+from pygame import mixer
 from pygame import USEREVENT
+import os
 font.init()
+mixer.init()
 
 class Const:
     WIDTH = 750
@@ -15,6 +18,10 @@ class Const:
 
     WHITE_COLOR = (255, 255, 255)
     VCOLOR = (233, 123, 55)
+    VPUT_SOUND = mixer.Sound('sounds/sound1.wav')
+    HPUT_SOUND = mixer.Sound('sounds/sound2.wav')
+    WIN_SOUND = mixer.Sound('sounds/gamewon.wav')
+    LOSE_SOUND = mixer.Sound('sounds/gameover.wav')
     HCOLOR = (0, 0, 0)
     DOMINO_MARGIN = 7
 

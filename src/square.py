@@ -17,3 +17,9 @@ class Square:
 
     def has_domino(self):
         return self.domino is not None
+
+    def copy_square(self, square):
+        self.row = square.row
+        self.col = square.col
+        self.piece = square.piece
+        self.domino = square.domino
