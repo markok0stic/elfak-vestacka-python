@@ -22,6 +22,8 @@ class GameForm:
             Const.COLS = c.get()
             Const.PLAYER_TURN = bool(f.get())
             Const.START = True
+            Const.HORIZONTAL_PLAYER_MOVES = [ (1,1), (1,2), (1,3), (1,4), (1,5), (3,1), (3,2), (3,3), (3,4), (3,5), (5,1), (5,2), (5,3), (5,4), (5,5), (Const.COLS-2,1), (Const.COLS-2,2), (Const.COLS-2,3), (Const.COLS-2,4), (Const.COLS-2,5) ]
+            Const.VERTICAL_PLAYER_MOVES =[ (0,1), (1,1), (2,1), (3,1), (4,1), (0,3), (1,3), (2,3), (3,3), (4,3), (0,5), (1,5), (2,5), (3,5), (4,5),  (0,Const.ROWS-2), (1,Const.ROWS-2), (2,Const.ROWS-2), (3,Const.ROWS-2), (4,Const.ROWS-2) ]
             root.destroy()
 
         ttk.Label(frm, text="Rows:", width=5).grid(column=0, row=1)

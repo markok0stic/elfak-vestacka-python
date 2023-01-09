@@ -30,11 +30,14 @@ class Const:
     ROWS = 10
     COLS = 10
     PLAYER_TURN = 0
+    COMPUTER_FIGURE = 0 
+    MOVE_NUMBER = 0
+    END = 19
 
     PLACE_VERT = True
 
-    #VERTICAL_PLAYER_MOVES =
-    #HORIZONTAL_PLAYER_MOVES =
+    VERTICAL_PLAYER_MOVES = list()
+    HORIZONTAL_PLAYER_MOVES = list()
 
     ALFABET = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
 
