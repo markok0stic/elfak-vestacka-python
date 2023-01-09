@@ -1,0 +1,15 @@
+U finalnoj fazi je urađeno sledeće:
+
+1. U klasi Game je dodao:
+- funkcije koje predstavljaju implementaciju min-max algoritma sa alfa i beta odsecanjima.
+- funkcija za procenu heuristike polja za trenutno stanje na tabli.
+- funkcija koja odigrava potez kada je računar na potezu.
+
+2. U klasi Const su dodate nove pomoćne promenjive 
+
+3. Dodat je i zvuk postavljanja domina kao i zvuk za kraj igre zbog atmosfere i ugođaja.
+
+4. Ukoliko imamo vise od 5 kolona i vise od 5 vrsta na tabli računar će prva 4 poteza nasumično
+   izabrati iz definisanog skupa poteza, tek nakon 4. poteza će koristiti min-max algoritam
+   sa alfa i beta odsecanjima. Ovo je uvedeno zbog brzine odigravanja poteza i vrlo lako moze
+   da se ukloni. 	
