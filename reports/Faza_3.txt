@@ -1,6 +1,6 @@
 U finalnoj fazi je urađeno sledeće:
 
-1. U klasi Game je dodao:
+1. U klasi Game je dodato:
 - funkcije koje predstavljaju implementaciju min-max algoritma sa alfa i beta odsecanjima.
 - funkcija za procenu heuristike polja za trenutno stanje na tabli.
 - funkcija koja odigrava potez kada je računar na potezu.

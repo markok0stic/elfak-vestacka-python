@@ -138,7 +138,7 @@ class Game:
 
         return new_state
 
-    def evaluate_state(self, board_state): # vraca heuristiku stanja MORA BOLJA HEURISTIKA
+    def evaluate_state(self, board_state):
         response = 0
         my_moves = self.opponent_possible_moves(board_state)
         opponent_moves = self.possible_moves(board_state)
