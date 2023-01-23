@@ -1,0 +1,39 @@
+Domineering Faza I - Veštačka Inteligencija 2022/23
+
+Marko Kostić 17708
+Dušsan Lukić 17727
+
+
+U izradi projekta je korišena ekstenzija pygame.
+Implementiranje su sledeće klase:
+
+-board
+-const
+-domino
+-form
+-game
+-main
+-square
+
+Klasa form sluzi za prevljenje početne forme, pomoću biblioteke tkinter, 
+koja omogućava unos dimenzija table kao i koji igrač iga prvi, računar ili čovek.
+
+Klasa const sadrži sve globalne konstante.
+
+Klasa domino služi za predstavljanje domine na tabli.
+
+Klasa square služi za predstavljane polja na tabli. Svaki square ima atribute
+row i col, koje predstavljaju njegovu poziciju na tabli, i atribute piece i domino
+koji pamte da li je polje zauzeto.
+
+Klasa board sluzi za predstavljanje table. Tabla je matrica proizvoljnih dimenzija
+pri čemu je svako polje u matrici zapavo objekat klase square.
+
+Klasa game sadrži celokipnu logiku igre i grafički interfejs za prikaz table i
+domina na njoj.
+
+Klasa main se koristi za pokretanje igre i za samo odigravanje poteza. U klasi main
+se nalazi beskonačna petlja koja vrti samu igru i prepoznaj etri event-a: QUIT,
+MOUSEBUTTONUP i END_EVENT. QUIT i MOUSEBUTTONUP su event-i iz pygame-a koji služe
+za gašenje igre i odigravanje poteza respektivno. END_EVENT je korisnički event 
+kreiran pomoću funkcije USEREVENT koji prepoznaje kraj igre.
