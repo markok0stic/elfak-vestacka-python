@@ -55,7 +55,6 @@ class Const:
     def read_coords(pos):
         x, y = pos
         return [y // Const.SQSIZE - (1 if Const.PLACE_VERT else 0), Const.ALFABET[x // Const.SQSIZE]]
-    
 
 staticmethod(Const.get_next_letter)
 staticmethod(Const.get_letter_index)

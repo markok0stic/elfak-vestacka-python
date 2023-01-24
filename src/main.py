@@ -25,8 +25,8 @@ class Main:
         screen = self.screen
 
         # for testing through terminal
-        #while True:
-        #    game.try_place_domino(screen, None)
+        # while True:
+        #     game.try_place_domino(screen, None)
 
         clock = pygame.time.Clock()
 
